@@ -1,0 +1,17 @@
+/ nav.navbar.navbar-inverse{role: 'navigation'}
+/   .container
+/     .navbar-header
+/       = link_to root_path, class: 'navbar-brand' do
+/         = image_tag 'favicon.ico'
+/         span.logo Блог
+/     .navbar-collapse.collapse
+/       - if user_signed_in?
+/         ul.nav.navbar-nav
+/           li.dropdown{role: 'presentation'}
+/             = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' do
+/               | Справочники
+/               span.caret
+/             ul.dropdown-menu
+/               li= link_to 'Статьи', posts_path
+/
+/       = render partial: 'layouts/shared/user_bar'
