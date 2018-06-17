@@ -1,0 +1,11 @@
+= simple_form_for [:admin, @tender] do |f|
+  = f.input :title
+  = f.association :user, collection: User.all, label_method: :email, label: 'Выбрать клиента'
+  = f.input :budget
+  = f.input :area
+  = f.input :floor
+  = f.input :region
+  = f.input :exhibition
+  = f.input :obligatory_condition
+  = f.input :technical_specification
+  = f.button :submit, 'Сохранить', class: 'btn btn-primary'

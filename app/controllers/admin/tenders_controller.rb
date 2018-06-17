@@ -1,10 +1,10 @@
-class TendersController < ApplicationController
-  before_action :authenticate_user!
+class Admin::TendersController < ApplicationController
+  before_action :authenticate_admin!
   before_action :load_model, only: %i[show edit update destroy]
-  before_action :load_user
-
+  layout 'admin'
+  
   def index
-    @tender = @user.tenders.all
+    @tender = Tender.all
   end
 
   def show; end
@@ -14,11 +14,9 @@ class TendersController < ApplicationController
   end
 
   def create
-    @questionnaire = @user.questionnaire
-    @tender = @user.tenders.build
-    @tender.full_tender(@questionnaire)
+    @tender = Tender.new tender_params
     if @tender.save
-      redirect_to tenders_path, notice: 'Тендер успешно создан'
+      redirect_to admin_tender_path, notice: 'Тендер успешно создан'
     else
       flash[:alert] = 'Не удалось создать тендер'
       render :new
@@ -29,7 +27,7 @@ class TendersController < ApplicationController
 
   def update
     if @tender.update tender_params
-      redirect_to tender_path, notice: 'Тендер успешно обновлен'
+      redirect_to admin_tender_path, notice: 'Тендер успешно обновлен'
     else
       flash[:alert] = 'Не удалось обновить тендер'
       render :edit
@@ -38,7 +36,7 @@ class TendersController < ApplicationController
 
   def destroy
     @tender.destroy
-    redirect_to tenders_path , notice: "Тендер удален"
+    redirect_to admin_tender_path , notice: "Тендер удален"
   end
 
   private
@@ -49,9 +47,5 @@ class TendersController < ApplicationController
 
   def load_model
     @tender = Tender.find params[:id]
-  end
-
-  def load_user
-    @user = current_user
   end
 end

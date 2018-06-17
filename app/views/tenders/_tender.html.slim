@@ -1,0 +1,8 @@
+tr
+  td= link_to tender.title, tender
+  td
+    = tender.user.questionnaire.username
+    br
+    = tender.user.email
+  td= tender.budget
+  td= tender.area

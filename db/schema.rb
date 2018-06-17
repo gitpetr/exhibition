@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_15_113520) do
+ActiveRecord::Schema.define(version: 2018_06_18_063629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,12 +32,53 @@ ActiveRecord::Schema.define(version: 2018_06_15_113520) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "username"
+    t.string "avatar"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "questionnaires", force: :cascade do |t|
+    t.string "title"
+    t.text "exhibition"
+    t.string "username"
+    t.string "address"
+    t.string "phone"
+    t.string "email"
+    t.string "web"
+    t.decimal "budget"
+    t.decimal "area"
+    t.string "region"
+    t.text "main_purpose_participation"
+    t.text "company_info"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "floor"
+    t.text "obligatory_condition"
+    t.text "technical_specification"
+    t.index ["user_id"], name: "index_questionnaires_on_user_id"
+  end
+
   create_table "tenders", force: :cascade do |t|
     t.string "title"
     t.decimal "budget"
     t.decimal "area"
+    t.integer "floor"
+    t.string "region"
+    t.string "exhibition"
+    t.integer "offer_counter"
+    t.integer "message_count"
+    t.text "obligatory_condition"
+    t.text "technical_specification"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tenders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,9 +94,13 @@ ActiveRecord::Schema.define(version: 2018_06_15_113520) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "partner"
+    t.boolean "partner"
+    t.string "tmp_password"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "profiles", "users"
+  add_foreign_key "questionnaires", "users"
+  add_foreign_key "tenders", "users"
 end

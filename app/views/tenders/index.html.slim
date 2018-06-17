@@ -1,0 +1,21 @@
+h1 Мои тендеры
+- if @user.tenders.any?
+  table.table.table-hover
+    thead
+      tr
+        th scope="col"  Название
+        th scope="col"  Бюджет
+        th scope="col"  Площадь
+        th scope="col"  Удалить
+    - @user.tenders.each do |tender|
+      tbody
+        tr
+          td= link_to tender.title, tender
+          td= tender.budget
+          td= tender.area
+          td= link_to icon('fa-trash', 'удалить'), tender, method: :delete, data: {confirm: 'Удалить безвозвратно?'}
+
+- else
+  p У Вас нет тендеров
+
+= link_to 'Создать тендер', new_tender_path, class: 'btn btn-primary'

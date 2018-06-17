@@ -1,0 +1,20 @@
+- if user_signed_in?
+  = render 'tenders/tabltender'
+- else
+  = simple_form_for  @questionnaires do |f|
+    = f.input :username
+    = f.input :title
+    = f.input :budget
+    = f.input :area
+    = f.input :floor
+    = f.input :region
+    = f.input :obligatory_condition
+    = f.input :technical_specification
+    = f.input :exhibition
+    = f.input :address
+    = f.input :email
+    = f.input :phone
+    = f.input :web
+    = f.input :main_purpose_participation
+    = f.input :company_info
+    = f.button :submit, 'Сохранить', class: 'btn btn-primary'

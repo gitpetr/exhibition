@@ -4,8 +4,24 @@ one:
   title: MyString
   budget: 9.99
   area: 9.99
+  floor: 1
+  region: MyString
+  exhibition: MyString
+  offer_counter: 1
+  message_count: 1
+  obligatory_condition: MyText
+  technical_specification: MyText
+  user: one
 
 two:
   title: MyString
   budget: 9.99
   area: 9.99
+  floor: 1
+  region: MyString
+  exhibition: MyString
+  offer_counter: 1
+  message_count: 1
+  obligatory_condition: MyText
+  technical_specification: MyText
+  user: two
