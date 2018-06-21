@@ -1,0 +1,7 @@
+h1 Редактировать профиль
+= simple_form_for @profile, url: {action: "update"} do |f|
+  = f.input :username
+  = f.input :phone
+  p= image_tag @user.profile.avatar.url(:thumb) unless @user.profile.avatar.file.nil?
+  = f.file_field :avatar
+  = f.button :submit, 'ok', class: 'btn btn-primary'

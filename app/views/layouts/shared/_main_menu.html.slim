@@ -1,0 +1,17 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light role='navigation'
+  .navbar-header
+    = link_to root_path, class: 'navbar-brand' do
+      = image_tag 'favicon.ico'
+      span.logo
+
+  .navbar-collapse.collapse
+    - if user_signed_in?
+      ul.navbar-nav.mr-auto
+        li.nav-item.dropdown role='presentation'
+          = link_to '#', class: 'dropdown-toggle nav-link', id: 'navbarDropdown' ,'data-toggle': 'dropdown' do
+            | Справочники
+            span.caret
+          .dropdown-menu aria-labelledby="navbarDropdown"
+            = link_to 'example', '#', class: 'dropdown-item'
+
+  = render partial: 'layouts/shared/user_bar' unless admin_signed_in?

@@ -1,0 +1,13 @@
+= @user.email
+br
+- if @user.profile
+  = image_tag @user.profile.avatar.url(:thumb) unless @user.profile.avatar.file.nil?
+
+- if @user.profile
+  p
+    = link_to edit_profiles_path do
+      | Редактировать профиль
+- else
+    = link_to new_profiles_path do
+      | Заполнить профиль
+

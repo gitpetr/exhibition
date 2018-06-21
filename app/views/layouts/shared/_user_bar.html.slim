@@ -1,0 +1,12 @@
+- if user_signed_in?
+  .btn-group.navbar-btn.navbar-right.margin-right-60
+    = button_tag class: 'dropdown-toggle btn btn-default', 'data-toggle': 'dropdown' do
+      = current_user.email
+      span.caret
+    .dropdown-menu aria-labelledby="navbarDropdown"
+      = link_to 'личный кабинет', cabinet_path, class: 'dropdown-item'
+      = link_to 'профиль', profiles_path, class: 'dropdown-item'
+      = link_to 'Выйти', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+      = link_to 'редактировать', edit_user_registration_path, class: 'dropdown-item'
+- else
+  = link_to 'Вход', new_user_session_path, class: 'btn btn-default navbar-btn navbar-right'
